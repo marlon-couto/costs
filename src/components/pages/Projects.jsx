@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function NewProject() {
+export default function Projects() {
   return (
     <div>
-      <h1>Novo Projeto</h1>
+      <h1>Projetos</h1>
     </div>
   );
 }
