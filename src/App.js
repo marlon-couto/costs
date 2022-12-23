@@ -1,49 +1,47 @@
 import { Switch, Route } from 'react-router-dom';
 
+import Container from './components/layout/Container';
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 import Company from './components/pages/Company';
 import Contact from './components/pages/Contact';
-import NewProject from './components/pages/NewProject';
 import Home from './components/pages/Home';
+import NewProject from './components/pages/NewProject';
 
 function App() {
   return (
     <div className="App">
-      <header>
-        <nav>
-          <ul>
-            <li>Home</li>
-            <li>Contato</li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <Switch>
-        <Route
-          exact
-          path="/company"
-          component={Company}
-        />
+        <Container customClass="min-height">
+          <Route
+            exact
+            path="/company"
+            component={Company}
+          />
 
-        <Route
-          exact
-          path="/contact"
-          component={Contact}
-        />
+          <Route
+            exact
+            path="/contact"
+            component={Contact}
+          />
 
-        <Route
-          exact
-          path="/new-project"
-          component={NewProject}
-        />
+          <Route
+            exact
+            path="/new-project"
+            component={NewProject}
+          />
 
-        <Route
-          exact
-          path="/"
-          component={Home}
-        />
+          <Route
+            exact
+            path="/"
+            component={Home}
+          />
+        </Container>
       </Switch>
 
-      <footer>Footer</footer>
+      <Footer />
     </div>
   );
 }
