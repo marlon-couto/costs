@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom';
 
 import Container from './components/layout/Container';
-import Header from './components/layout/Header';
+import Navbar from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Company from './components/pages/Company';
 import Contact from './components/pages/Contact';
@@ -11,7 +11,7 @@ import NewProject from './components/pages/NewProject';
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Navbar />
 
       <Switch>
         <Container customClass="min-height">
