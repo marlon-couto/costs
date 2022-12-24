@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './NewProject.module.css';
 
-import ProjectForm from './form//ProjectForm';
+import ProjectForm from '../forms/ProjectForm';
 
 export default function NewProject() {
   return (
