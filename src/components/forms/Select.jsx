@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './Select.module.css';
 
-export default function Select({ text, name, handleChange, value, options }) {
+export default function Select({
+  text,
+  name,
+  handleChange,
+  value,
+  categories,
+}) {
   return (
     <div className={styles.form_control}>
       <label htmlFor={name}>{text}</label>
@@ -11,7 +17,18 @@ export default function Select({ text, name, handleChange, value, options }) {
         onChange={handleChange}
         value={value}
       >
-        <option value="Selecione uma opção"></option>
+        <option value="">Selecione uma opção</option>
+        {categories.map((category) => {
+          const { id, name } = category;
+          return (
+            <option
+              value={id}
+              key={id}
+            >
+              {name}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

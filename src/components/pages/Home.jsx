@@ -14,7 +14,7 @@ export default function Home() {
 
       <LinkButton
         to="/new-project"
-        text="Criar Projeto"
+        text="Novo Projeto"
       />
 
       <img
