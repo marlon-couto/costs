@@ -13,7 +13,7 @@ export default function Home() {
       <p>Comece a gerenciar seus projetos agora mesmo!</p>
 
       <LinkButton
-        to="/projects"
+        to="/new-project"
         text="Criar Projeto"
       />
 
