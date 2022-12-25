@@ -6,7 +6,7 @@ export default function Input({
   text,
   name,
   placeholder,
-  handleChange,
+  onChange,
   value,
 }) {
   return (
@@ -17,7 +17,7 @@ export default function Input({
         name={name}
         id={name}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={onChange}
         value={value}
       />
     </div>
