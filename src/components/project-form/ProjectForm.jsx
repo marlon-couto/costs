@@ -9,8 +9,6 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
-  const { name, budget, category } = project;
-
   /* TODO: Criar um helper para a função de fetch */
 
   useEffect(() => {
@@ -62,7 +60,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         placeholder="Insira o nome do projeto"
         text="Nome do projeto"
         onChange={handleChange}
-        value={name ? name : ''}
+        value={project.name ? project.name : ''}
       />
 
       <Input
@@ -71,7 +69,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         placeholder="Insira o orçamento total"
         text="Orçamento do projeto"
         onChange={handleChange}
-        value={budget ? budget : ''}
+        value={project.budget ? project.budget : ''}
       />
 
       <Select
@@ -79,7 +77,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         text="Selecione a categoria"
         categories={categories}
         onChange={handleSelect}
-        value={category ? category.id : ''}
+        value={project.category ? project.category.id : ''}
       />
 
       <SubmitButton text={buttonText} />
