@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import styles from './ProjectForm.module.css';
 
-import Input from '../forms/input/Input';
-import Select from '../forms/select/Select';
-import SubmitButton from '../forms/submit-button/SubmitButton';
+import Input from './form/Input';
+import Select from './form/Select';
+import SubmitButton from './form/SubmitButton';
 
 export default function ProjectForm({ onSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);

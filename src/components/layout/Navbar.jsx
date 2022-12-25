@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logo from '../../../assets/costs_logo.png';
+import logo from '../../assets/costs_logo.png';
 import styles from './Navbar.module.css';
 
-import Container from '../container/Container';
+import Container from '../layout/Container';
 
 export default function Navbar() {
   return (

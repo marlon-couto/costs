@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import styles from './NewProject.module.css';
 
-import ProjectForm from '../../project-form/ProjectForm';
+import ProjectForm from '../ProjectForm';
 
 export default function NewProject() {
   const history = useHistory();
