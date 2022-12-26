@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import styles from './Message.module.css';
+import PropTypes from 'prop-types';
+import styles from '../../assets/styles/Message.module.css';
 
 export default function Message({ message, type }) {
   const [visible, setVisible] = useState(false);
@@ -7,7 +8,7 @@ export default function Message({ message, type }) {
   useEffect(() => {
     if (!message) {
       setVisible(false);
-      return;
+      return true;
     }
 
     setVisible(true);
@@ -19,11 +20,12 @@ export default function Message({ message, type }) {
     return () => clearTimeout(timer);
   }, [message, visible]);
 
-  return (
-    <>
-      {visible && (
-        <div className={`${styles.message} ${styles[type]}`}>{message}</div>
-      )}
-    </>
-  );
+  if (!visible) return '';
+
+  return <div className={`${styles.message} ${styles[type]}`}>{message}</div>;
 }
+
+Message.propTypes = {
+  message: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};

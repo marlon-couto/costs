@@ -1,5 +1,6 @@
 import React from 'react';
-import styles from './Input.module.css';
+import PropTypes from 'prop-types';
+import styles from '../../assets/styles/Input.module.css';
 
 export default function Input({
   type,
@@ -23,3 +24,12 @@ export default function Input({
     </div>
   );
 }
+
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};

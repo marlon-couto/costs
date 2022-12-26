@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styles from './ProjectForm.module.css';
+import PropTypes from 'prop-types';
+import styles from '../../assets/styles/ProjectForm.module.css';
 
-import Input from './form/Input';
-import Select from './form/Select';
-import SubmitButton from './form/SubmitButton';
+import Input from '../../components/form/Input';
+import Select from '../../components/form/Select';
+import SubmitButton from '../../components/form/SubmitButton';
 
 export default function ProjectForm({ onSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
@@ -35,7 +36,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
       const { name, value } = target;
       setProject({ ...project, [name]: value });
     },
-    [project]
+    [project],
   );
 
   const handleSelect = useCallback(
@@ -46,14 +47,11 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         category: { id: value, name: options[selectedIndex].text },
       });
     },
-    [project]
+    [project],
   );
 
   return (
-    <form
-      className={styles.form}
-      onSubmit={handleSubmit}
-    >
+    <form className={styles.form} onSubmit={handleSubmit}>
       <Input
         name="name"
         type="text"
@@ -84,3 +82,9 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
     </form>
   );
 }
+
+ProjectForm.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  projectData: PropTypes.shape({}).isRequired,
+};

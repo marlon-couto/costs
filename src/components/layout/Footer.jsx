@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import styles from './Footer.module.css';
+import styles from '../../assets/styles/Footer.module.css';
 
 export default function Footer() {
   return (
@@ -20,7 +20,8 @@ export default function Footer() {
       </ul>
 
       <p className={styles.copyright}>
-        <span>Costs</span>&copy; 2022
+        <span>Costs</span>
+        &copy; 2022
       </p>
     </footer>
   );

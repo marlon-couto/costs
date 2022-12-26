@@ -1,14 +1,14 @@
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Container from './components/layout/Container';
 import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
-
-import Company from './components/pages/Company';
-import Contact from './components/pages/Contact';
-import Home from './components/pages/Home';
-import NewProject from './components/pages/NewProject';
-import Projects from './components/pages/Projects';
+import NewProject from './pages/projects/NewProject';
+import Projects from './pages/projects/Projects';
+import Company from './pages/Company';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
 
 function App() {
   return (

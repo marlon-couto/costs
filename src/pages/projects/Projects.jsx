@@ -1,10 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import styles from './Projects.module.css';
+import styles from '../../assets/styles/Projects.module.css';
 
-import Container from '../layout/Container';
-import LinkButton from '../LinkButton';
-import Message from '../Message';
+import Container from '../../components/layout/Container';
+import LinkButton from '../../components/ui/LinkButton';
+import Message from '../../components/ui/Message';
 
 export default function Projects() {
   const location = useLocation();
