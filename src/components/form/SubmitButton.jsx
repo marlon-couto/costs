@@ -5,7 +5,7 @@ import styles from '../../assets/styles/SubmitButton.module.css';
 export default function SubmitButton({ text }) {
   return (
     <div>
-      <button className={styles.button} type="button">
+      <button className={styles.button} type="submit">
         {text}
       </button>
     </div>

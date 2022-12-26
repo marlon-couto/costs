@@ -12,5 +12,9 @@ export default function Container({ customClass, children }) {
 
 Container.propTypes = {
   children: PropTypes.node.isRequired,
-  customClass: PropTypes.string.isRequired,
+  customClass: PropTypes.string,
+};
+
+Container.defaultProps = {
+  customClass: '',
 };

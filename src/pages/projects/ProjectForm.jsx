@@ -23,7 +23,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
       .then((data) => {
         setCategories(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => error.message);
   }, []);
 
   const handleSubmit = (event) => {
@@ -86,5 +86,16 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
 ProjectForm.propTypes = {
   buttonText: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  projectData: PropTypes.shape({}).isRequired,
+  projectData: PropTypes.shape({
+    id: PropTypes.number,
+    budget: PropTypes.number,
+    name: PropTypes.string,
+    category: PropTypes.string,
+    costs: PropTypes.number,
+    services: PropTypes.arrayOf(PropTypes.string),
+  }),
+};
+
+ProjectForm.defaultProps = {
+  projectData: {},
 };

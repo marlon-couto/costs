@@ -6,24 +6,23 @@ import ProjectForm from './ProjectForm';
 export default function NewProject() {
   const history = useHistory();
 
-  const createPost = useCallback(
-    (project) => {
-      project.cost = 0;
-      project.services = [];
+  const createPost = useCallback((project) => {
+    project.cost = 0;
+    project.services = [];
 
-      fetch('http://localhost:5000/projects', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(project),
+    fetch('http://localhost:5000/projects', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(project),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        history.push('/projects', { message: 'Projeto criado com sucesso!' });
       })
-        .then((response) => response.json())
-        .then((_data) => history.push('/projects', { message: 'Projeto criado com sucesso!' }))
-        .catch((error) => console.log(error));
-    },
-    [history],
-  );
+      .catch((error) => error.message);
+  }, []);
 
   return (
     <div className={styles.new_project_container}>
