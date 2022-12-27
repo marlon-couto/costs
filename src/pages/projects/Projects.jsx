@@ -4,11 +4,13 @@ import styles from '../../assets/styles/Projects.module.css';
 
 import Container from '../../components/layout/Container';
 import LinkButton from '../../components/ui/LinkButton';
+import Loading from '../../components/ui/Loading';
 import Message from '../../components/ui/Message';
 import ProjectCard from './ProjectCard';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const location = useLocation();
   const { state } = location;
@@ -20,17 +22,20 @@ export default function Projects() {
   }
 
   useEffect(() => {
-    fetch('http://localhost:5000/projects', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setProjects(data);
+    setTimeout(() => {
+      fetch('http://localhost:5000/projects', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((error) => error.message);
+        .then((response) => response.json())
+        .then((data) => {
+          setProjects(data);
+          setLoading(false);
+        })
+        .catch((error) => error.message);
+    }, 1000);
   }, []);
 
   const handleRemove = useCallback(() => {
@@ -63,6 +68,10 @@ export default function Projects() {
               />
             );
           })}
+        {loading && <Loading />}
+        {!loading && projects.length === 0 && (
+          <p>Não há projetos cadastrados!</p>
+        )}
       </Container>
     </div>
   );
