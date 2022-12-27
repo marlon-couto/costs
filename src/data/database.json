@@ -10,6 +10,28 @@
       "cost": 0,
       "services": [],
       "id": 1
+    },
+    {
+      "name": "Teste 2",
+      "budget": "7000",
+      "category": {
+        "id": "1",
+        "name": "Infraestrutura"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 2
+    },
+    {
+      "name": "Teste 3",
+      "budget": "3000",
+      "category": {
+        "id": "3",
+        "name": "Design"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 3
     }
   ],
   "categories": [

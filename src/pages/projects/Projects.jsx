@@ -11,6 +11,7 @@ import ProjectCard from './ProjectCard';
 export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [projectMessage, setProjectMessage] = useState('');
 
   const location = useLocation();
   const { state } = location;
@@ -38,8 +39,19 @@ export default function Projects() {
     }, 1000);
   }, []);
 
-  const handleRemove = useCallback(() => {
-    console.log('teste');
+  const removeProject = useCallback((id) => {
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        setProjects(projects.filter((project) => project.id !== id));
+        setProjectMessage('Projeto removido com sucesso');
+      })
+      .catch((error) => error.message);
   }, []);
 
   return (
@@ -50,6 +62,7 @@ export default function Projects() {
       </div>
 
       {message && <Message message={message} type="success" />}
+      {projectMessage && <Message message={projectMessage} type="success" />}
 
       <Container customClass="start">
         {projects.length > 0
@@ -64,7 +77,7 @@ export default function Projects() {
                 id={id}
                 budget={budget}
                 category={category.name}
-                handleRemove={handleRemove}
+                handleRemove={removeProject}
               />
             );
           })}
