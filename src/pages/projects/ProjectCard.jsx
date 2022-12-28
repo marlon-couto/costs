@@ -20,8 +20,6 @@ export default function ProjectCard({
     <div className={styles.project_card}>
       <h4>{name}</h4>
 
-      <p>{id}</p>
-
       <p>
         <span>Orçamento:</span>
         {' '}
@@ -34,7 +32,7 @@ export default function ProjectCard({
       </p>
 
       <div className={styles.project_card_actions}>
-        <Link to="/">
+        <Link to={`/projects/${id}`}>
           <BsPencil />
           Editar
         </Link>

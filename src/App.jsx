@@ -6,6 +6,7 @@ import Footer from './components/layout/Footer';
 import Navbar from './components/layout/Navbar';
 import NewProject from './pages/projects/NewProject';
 import Projects from './pages/projects/Projects';
+import ProjectDetails from './pages/projects/ProjectDetails';
 import Company from './pages/Company';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
@@ -17,6 +18,12 @@ function App() {
 
       <Container customClass="min_height">
         <Switch>
+          <Route
+            exact
+            path="/project/:id"
+            component={ProjectDetails}
+          />
+
           <Route
             exact
             path="/company"
