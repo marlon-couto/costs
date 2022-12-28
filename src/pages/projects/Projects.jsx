@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom';
 import styles from '../../assets/styles/Projects.module.css';
 
 import Container from '../../components/layout/Container';
-import LinkButton from '../../components/ui/LinkButton';
-import Loading from '../../components/ui/Loading';
-import Message from '../../components/ui/Message';
+import LinkButton from '../../components/layout/LinkButton';
+import Loading from '../../components/layout/Loading';
+import Message from '../../components/layout/Message';
 import ProjectCard from './ProjectCard';
 
 export default function Projects() {
