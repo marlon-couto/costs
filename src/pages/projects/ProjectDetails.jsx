@@ -11,6 +11,7 @@ export default function ProjectDetails() {
   const { id } = useParams();
   const [project, setProject] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
+  const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState();
   const [type, setType] = useState();
 
@@ -34,7 +35,13 @@ export default function ProjectDetails() {
     setShowProjectForm(!showProjectForm);
   };
 
+  const toggleServiceForm = () => {
+    setShowServiceForm(!showServiceForm);
+  };
+
   const editPost = useCallback((updatedProject) => {
+    setMessage('');
+
     if (updatedProject.budget < updatedProject.cost) {
       setMessage('O custo do projeto não pode ser maior que o orçamento!');
       setType('error');
@@ -105,6 +112,28 @@ export default function ProjectDetails() {
             </div>
           )}
         </div>
+
+        <div className={styles.service_form_container}>
+          <h2>Adicione um serviço:</h2>
+
+          <button
+            className={styles.button}
+            onClick={toggleServiceForm}
+            type="button"
+          >
+            {!showServiceForm ? 'Adicionar serviço' : 'Fechar'}
+          </button>
+
+          <div className={styles.project_info}>
+            {showServiceForm && <div>Formulário de serviço</div>}
+          </div>
+        </div>
+
+        <h2>Serviços</h2>
+
+        <Container customClass="start">
+          <p>Serviços</p>
+        </Container>
       </Container>
     </div>
   );

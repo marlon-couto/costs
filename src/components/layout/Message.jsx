@@ -8,7 +8,7 @@ export default function Message({ message, type }) {
   useEffect(() => {
     if (!message) {
       setVisible(false);
-      return true;
+      return false;
     }
 
     setVisible(true);
@@ -18,7 +18,7 @@ export default function Message({ message, type }) {
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [message, visible]);
+  }, [message]);
 
   if (!visible) return '';
 
