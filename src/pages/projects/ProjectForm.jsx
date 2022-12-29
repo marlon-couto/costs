@@ -88,10 +88,13 @@ ProjectForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   projectData: PropTypes.shape({
     id: PropTypes.number,
-    budget: PropTypes.number,
+    budget: PropTypes.string,
     name: PropTypes.string,
-    category: PropTypes.string,
-    costs: PropTypes.number,
+    category: PropTypes.shape({
+      name: PropTypes.string,
+      id: PropTypes.string,
+    }),
+    costs: PropTypes.string,
     services: PropTypes.arrayOf(PropTypes.string),
   }),
 };

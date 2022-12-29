@@ -1,8 +1,8 @@
 {
   "projects": [
     {
-      "name": "Teste",
-      "budget": "5000",
+      "name": "Teste 1",
+      "budget": "6000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
@@ -24,7 +24,7 @@
     },
     {
       "name": "Teste 3",
-      "budget": "3000",
+      "budget": "4000",
       "category": {
         "id": "3",
         "name": "Design"
