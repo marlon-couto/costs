@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 import styles from '../../assets/styles/Select.module.css';
 
 export default function Select({
-  text, name, onChange, value, categories,
+  text,
+  name,
+  handleChange,
+  value,
+  categories,
 }) {
   return (
     <div className={styles.form_control}>
       <label htmlFor={name}>{text}</label>
-      <select name={name} id={name} onChange={onChange} value={value || ''}>
+
+      <select name={name} id={name} onChange={handleChange} value={value || ''}>
         <option value="">Selecione uma opção</option>
         {categories.map((category) => {
           const { id } = category;
@@ -31,7 +36,7 @@ Select.propTypes = {
     }),
   ).isRequired,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };

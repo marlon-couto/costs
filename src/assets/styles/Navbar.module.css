@@ -1,7 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
-  background-color: #222;
+  background-color: var(--secondary-bg-clr);
   padding: 1em;
 }
 
@@ -16,10 +16,10 @@
 }
 
 .item a {
-  color: #fff;
+  color: var(--secondary-txt-clr);
   text-decoration: none;
 }
 
 .item a:hover {
-  color: #ffbb33;
+  color: var(--accent-clr);
 }

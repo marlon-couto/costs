@@ -7,18 +7,19 @@ export default function Input({
   text,
   name,
   placeholder,
-  onChange,
+  handleChange,
   value,
 }) {
   return (
     <div className={styles.form_control}>
       <label htmlFor={name}>{text}</label>
+
       <input
         type={type}
         name={name}
         id={name}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={handleChange}
         value={value}
       />
     </div>
@@ -27,7 +28,7 @@ export default function Input({
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

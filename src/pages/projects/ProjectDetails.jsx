@@ -1,19 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+import { parse, v4 as uuid } from 'uuid';
 import styles from '../../assets/styles/ProjectDetails.module.css';
 
 import Container from '../../components/layout/Container';
 import Loading from '../../components/layout/Loading';
 import Message from '../../components/layout/Message';
+import ServiceForm from '../services/ServiceForm';
 import ProjectForm from './ProjectForm';
 
 export default function ProjectDetails() {
   const { id } = useParams();
+
   const [project, setProject] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState();
-  const [type, setType] = useState();
+  const [messageType, setMessageType] = useState();
+
+  const {
+    name, category, budget, services,
+  } = project;
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,7 +51,7 @@ export default function ProjectDetails() {
 
     if (updatedProject.budget < updatedProject.cost) {
       setMessage('O custo do projeto não pode ser maior que o orçamento!');
-      setType('error');
+      setMessageType('error');
       return false;
     }
 
@@ -60,22 +67,57 @@ export default function ProjectDetails() {
         setProject(data);
         setShowProjectForm(false);
         setMessage('Projeto atualizado!');
-        setType('success');
+        setMessageType('success');
       })
       .catch((error) => error.message);
 
     return true;
   }, []);
 
-  if (!project.name) return <Loading />;
+  const showTotalCost = useCallback(() => project.cost, [project.cost]);
+
+  const createService = useCallback(() => {
+    setMessage('');
+
+    const lastService = services[services.length - 1];
+
+    lastService.id = uuid();
+
+    const newCost = parseFloat(project.cost) + parseFloat(lastService.cost);
+    const projectBudget = parseFloat(budget);
+
+    if (newCost > projectBudget) {
+      setMessage(
+        'Orçamento ultrapassado, por favor verifique o valor do serviço.',
+      );
+      setMessageType('error');
+      services.pop();
+      return;
+    }
+
+    project.cost = newCost;
+
+    fetch(`http://localhost:5000/projects/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(project),
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((error) => error.message);
+  }, [project]);
+
+  if (!name) return <Loading />;
 
   return (
     <div className={styles.project_details}>
       <Container customClass="column">
-        {message && <Message type={type} message={message} />}
+        {message && <Message type={messageType} message={message} />}
 
         <div className={styles.details_container}>
-          <h1>{`Projeto: ${project.name}`}</h1>
+          <h1>{`Projeto: ${name}`}</h1>
 
           <button
             className={styles.button}
@@ -88,24 +130,24 @@ export default function ProjectDetails() {
           {!showProjectForm ? (
             <div className={styles.project_info}>
               <p>
-                <span>Categoria:</span>
-                {project.category.name}
+                <span>Categoria: </span>
+                {category.name}
               </p>
 
               <p>
-                <span>Total de orçamento:</span>
-                {`R$ ${project.budget}`}
+                <span>Total de orçamento: </span>
+                {`R$ ${budget}`}
               </p>
 
               <p>
-                <span>Total utilizado:</span>
-                {`R$ ${project.cost}`}
+                <span>Total utilizado: </span>
+                {`R$ ${showTotalCost()}`}
               </p>
             </div>
           ) : (
             <div className={styles.project_info}>
               <ProjectForm
-                onSubmit={editPost}
+                handleSubmit={editPost}
                 projectData={project}
                 buttonText="Concluir edição"
               />
@@ -125,7 +167,13 @@ export default function ProjectDetails() {
           </button>
 
           <div className={styles.project_info}>
-            {showServiceForm && <div>Formulário de serviço</div>}
+            {showServiceForm && (
+              <ServiceForm
+                buttonText="Adicionar serviço"
+                handleSubmit={createService}
+                projectData={project}
+              />
+            )}
           </div>
         </div>
 

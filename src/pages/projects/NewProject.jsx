@@ -3,8 +3,12 @@ import { useHistory } from 'react-router-dom';
 import styles from '../../assets/styles/NewProject.module.css';
 import ProjectForm from './ProjectForm';
 
+// TODO: o botão só deve estar habilitado caso os campos estejam preenchidos
+
 export default function NewProject() {
   const history = useHistory();
+
+  // TODO: corrigir esse erro abaixo
 
   const createPost = useCallback((project) => {
     project.cost = 0;
@@ -29,7 +33,7 @@ export default function NewProject() {
       <h1>Criar Projeto</h1>
       <p>Crie seu projeto para depois adicionar os serviços</p>
 
-      <ProjectForm onSubmit={createPost} buttonText="Criar projeto" />
+      <ProjectForm handleSubmit={createPost} buttonText="Criar projeto" />
     </div>
   );
 }

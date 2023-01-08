@@ -6,11 +6,11 @@ import Input from '../../components/form/Input';
 import Select from '../../components/form/Select';
 import SubmitButton from '../../components/form/SubmitButton';
 
-export default function ProjectForm({ onSubmit, projectData, buttonText }) {
+export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
-  /* TODO: Criar um helper para a função de fetch */
+  // TODO: Criar um helper para a função de fetch
 
   useEffect(() => {
     fetch('http://localhost:5000/categories', {
@@ -26,9 +26,9 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
       .catch((error) => error.message);
   }, []);
 
-  const handleSubmit = (event) => {
+  const submit = (event) => {
     event.preventDefault();
-    onSubmit(project);
+    handleSubmit(project);
   };
 
   const handleChange = useCallback(
@@ -51,13 +51,13 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
   );
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={submit}>
       <Input
         name="name"
         type="text"
         placeholder="Insira o nome do projeto"
         text="Nome do projeto"
-        onChange={handleChange}
+        handleChange={handleChange}
         value={project.name ? project.name : ''}
       />
 
@@ -66,7 +66,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         type="number"
         placeholder="Insira o orçamento total"
         text="Orçamento do projeto"
-        onChange={handleChange}
+        handleChange={handleChange}
         value={project.budget ? project.budget : ''}
       />
 
@@ -74,7 +74,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
         name="category_id"
         text="Selecione a categoria"
         categories={categories}
-        onChange={handleSelect}
+        handleChange={handleSelect}
         value={project.category ? project.category.id : ''}
       />
 
@@ -85,7 +85,7 @@ export default function ProjectForm({ onSubmit, projectData, buttonText }) {
 
 ProjectForm.propTypes = {
   buttonText: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   projectData: PropTypes.shape({
     id: PropTypes.number,
     budget: PropTypes.string,
