@@ -1,89 +1,22 @@
 {
   "projects": [
     {
-      "name": "Teste 1",
+      "name": "App de Receitas",
       "budget": "5000",
       "category": {
         "id": "2",
         "name": "Desenvolvimento"
       },
-      "cost": 0,
-      "services": [],
-      "id": 1
-    },
-    {
-      "name": "Teste 2",
-      "budget": "7000",
-      "category": {
-        "id": "1",
-        "name": "Infraestrutura"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 2
-    },
-    {
-      "name": "Teste 3",
-      "budget": "3000",
-      "category": {
-        "id": "3",
-        "name": "Design"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 3
-    },
-    {
-      "name": "Teste 4",
-      "budget": "13000",
-      "category": {
-        "id": "4",
-        "name": "Planejamento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 4
-    },
-    {
-      "name": "Teste 5",
-      "budget": "4000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 0,
-      "services": [],
-      "id": 5
-    },
-    {
-      "name": "App de Receitas",
-      "budget": "10000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 400,
+      "cost": 2000,
       "services": [
         {
-          "name": "Serviço",
-          "cost": "100",
-          "description": "Isso e aquilo, etc.",
-          "id": "93a8c5c9-ccc6-4515-a6ae-390628a04da9"
-        },
-        {
-          "name": "Serviço",
-          "cost": "100",
-          "description": "Isso e aquilo, etc.",
-          "id": "93a8c5c9-ccc6-4515-a6ae-390628a04da9"
-        },
-        {
-          "name": "Outro serviço",
-          "cost": "200",
-          "description": "Mais um serviço.",
-          "id": "9705eee7-e89f-4999-ac68-05f4d87427b3"
+          "name": "Criação de Home Page",
+          "cost": "2000",
+          "description": "Cria home page para a aplicação.",
+          "id": "3779aa5d-5e67-443b-88bc-d2904a34cdd5"
         }
       ],
-      "id": 6
+      "id": 1
     }
   ],
   "categories": [

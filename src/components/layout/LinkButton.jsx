@@ -1,7 +1,6 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-
 import styles from '../../assets/styles/LinkButton.module.css';
 
 export default function LinkButton({ to, text }) {
@@ -13,6 +12,6 @@ export default function LinkButton({ to, text }) {
 }
 
 LinkButton.propTypes = {
-  text: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
-};
+  text: PropTypes.string,
+  to: PropTypes.string,
+}.isRequired;

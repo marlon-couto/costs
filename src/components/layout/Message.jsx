@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import styles from '../../assets/styles/Message.module.css';
 
 export default function Message({ message, type }) {
@@ -10,13 +10,10 @@ export default function Message({ message, type }) {
       setVisible(false);
       return false;
     }
-
     setVisible(true);
-
     const timer = setTimeout(() => {
       setVisible(false);
     }, 3000);
-
     return () => clearTimeout(timer);
   }, [message]);
 
@@ -26,6 +23,6 @@ export default function Message({ message, type }) {
 }
 
 Message.propTypes = {
-  message: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};
+  message: PropTypes.string,
+  type: PropTypes.string,
+}.isRequired;

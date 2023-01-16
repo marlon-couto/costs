@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
+import { getCategories } from '../../helpers/fetchAPI';
 import styles from '../../assets/styles/ProjectForm.module.css';
 
 import Input from '../../components/form/Input';
@@ -10,20 +11,15 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
-  // TODO: Criar um helper para a função de fetch
+  // TODO: incluir validação de formulário.
+
+  const handleCategories = async () => {
+    const data = await getCategories();
+    setCategories(data);
+  };
 
   useEffect(() => {
-    fetch('http://localhost:5000/categories', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setCategories(data);
-      })
-      .catch((error) => error.message);
+    handleCategories();
   }, []);
 
   const submit = (event) => {
@@ -32,16 +28,14 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   };
 
   const handleChange = useCallback(
-    ({ target }) => {
-      const { name, value } = target;
+    ({ target: { name, value } }) => {
       setProject({ ...project, [name]: value });
     },
     [project],
   );
 
   const handleSelect = useCallback(
-    ({ target }) => {
-      const { value, options, selectedIndex } = target;
+    ({ target: { value, options, selectedIndex } }) => {
       setProject({
         ...project,
         category: { id: value, name: options[selectedIndex].text },
@@ -84,18 +78,21 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
 }
 
 ProjectForm.propTypes = {
-  buttonText: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  buttonText: PropTypes.string,
+  handleSubmit: PropTypes.func,
+}.isRequired;
+
+ProjectForm.propTypes = {
   projectData: PropTypes.shape({
-    id: PropTypes.number,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     budget: PropTypes.string,
     name: PropTypes.string,
     category: PropTypes.shape({
       name: PropTypes.string,
       id: PropTypes.string,
     }),
-    costs: PropTypes.string,
-    services: PropTypes.arrayOf(PropTypes.string),
+    cost: PropTypes.number,
+    services: PropTypes.arrayOf(PropTypes.shape({})),
   }),
 };
 

@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styles from '../../assets/styles/Container.module.css';
 
 export default function Container({ customClass, children }) {

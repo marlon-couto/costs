@@ -11,7 +11,7 @@ import Company from './pages/Company';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 
-function App() {
+export default function App() {
   return (
     <>
       <Navbar />
@@ -60,5 +60,3 @@ function App() {
     </>
   );
 }
-
-export default App;

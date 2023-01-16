@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styles from '../../assets/styles/Select.module.css';
 
 export default function Select({
@@ -12,17 +12,14 @@ export default function Select({
   return (
     <div className={styles.form_control}>
       <label htmlFor={name}>{text}</label>
-
       <select name={name} id={name} onChange={handleChange} value={value || ''}>
         <option value="">Selecione uma opção</option>
-        {categories.map((category) => {
-          const { id } = category;
-          return (
-            <option value={id} key={id}>
-              {category.name}
-            </option>
-          );
-        })}
+
+        {categories.map((category) => (
+          <option value={category.id} key={category.id}>
+            {category.name}
+          </option>
+        ))}
       </select>
     </div>
   );
@@ -31,12 +28,12 @@ export default function Select({
 Select.propTypes = {
   categories: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
+      id: PropTypes.string,
       name: PropTypes.string,
     }),
-  ).isRequired,
-  name: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-};
+  ),
+  name: PropTypes.string,
+  handleChange: PropTypes.func,
+  text: PropTypes.string,
+  value: PropTypes.string,
+}.isRequired;

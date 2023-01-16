@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { parse, v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
+import {
+  getProjectById,
+  patchProject,
+  patchProjectServices,
+  putProject,
+} from '../../helpers/fetchAPI';
 import styles from '../../assets/styles/ProjectDetails.module.css';
 
 import Container from '../../components/layout/Container';
@@ -8,33 +14,26 @@ import Loading from '../../components/layout/Loading';
 import Message from '../../components/layout/Message';
 import ServiceForm from '../services/ServiceForm';
 import ProjectForm from './ProjectForm';
+import ServiceCard from '../services/ServiceCard';
 
 export default function ProjectDetails() {
   const { id } = useParams();
-
   const [project, setProject] = useState([]);
+  const [services, setServices] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
   const [showServiceForm, setShowServiceForm] = useState(false);
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
-  const {
-    name, category, budget, services,
-  } = project;
+  const handleProject = async (projectId) => {
+    const data = await getProjectById(projectId);
+    setProject(data);
+    setServices(data.services);
+  };
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch(`http://localhost:5000/projects/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setProject(data);
-        })
-        .catch((error) => error.message);
+    setTimeout(async () => {
+      await handleProject(id);
     }, 1000);
   }, [id]);
 
@@ -46,70 +45,57 @@ export default function ProjectDetails() {
     setShowServiceForm(!showServiceForm);
   };
 
-  const editPost = useCallback((updatedProject) => {
+  const editPost = useCallback(async (updatedProject) => {
     setMessage('');
-
     if (updatedProject.budget < updatedProject.cost) {
       setMessage('O custo do projeto não pode ser maior que o orçamento!');
       setMessageType('error');
       return false;
     }
-
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedProject),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setProject(data);
-        setShowProjectForm(false);
-        setMessage('Projeto atualizado!');
-        setMessageType('success');
-      })
-      .catch((error) => error.message);
-
+    const data = await patchProject(id, updatedProject);
+    setProject(data);
+    setShowProjectForm(false);
+    setMessage('Projeto atualizado!');
+    setMessageType('success');
     return true;
   }, []);
 
   const showTotalCost = useCallback(() => project.cost, [project.cost]);
 
-  const createService = useCallback(() => {
-    setMessage('');
-
-    const lastService = services[services.length - 1];
-
-    lastService.id = uuid();
-
+  const createService = useCallback(async () => {
+    const lastService = project.services[project.services.length - 1];
     const newCost = parseFloat(project.cost) + parseFloat(lastService.cost);
-    const projectBudget = parseFloat(budget);
-
+    const projectBudget = parseFloat(project.budget);
+    lastService.id = uuid();
+    setMessage('');
     if (newCost > projectBudget) {
       setMessage(
         'Orçamento ultrapassado, por favor verifique o valor do serviço.',
       );
       setMessageType('error');
-      services.pop();
+      project.services.pop();
       return;
     }
-
     project.cost = newCost;
-
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(project),
-    })
-      .then((response) => response.json())
-      .then((data) => data)
-      .catch((error) => error.message);
+    await putProject(id, project);
+    setShowServiceForm(false);
   }, [project]);
 
-  if (!name) return <Loading />;
+  const removeService = useCallback(async (serviceId, cost) => {
+    const servicesUpdated = project.services.filter((service) => service.id !== serviceId);
+    const projectUpdated = project;
+    projectUpdated.services = servicesUpdated;
+    projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+    const servicesPatched = await patchProjectServices(projectUpdated);
+    if (servicesPatched) {
+      setProject(projectUpdated);
+      setServices(servicesUpdated);
+      setMessage('Serviço removido com sucesso');
+      setMessageType('success');
+    }
+  }, []);
+
+  if (!project.name) return <Loading />;
 
   return (
     <div className={styles.project_details}>
@@ -117,7 +103,7 @@ export default function ProjectDetails() {
         {message && <Message type={messageType} message={message} />}
 
         <div className={styles.details_container}>
-          <h1>{`Projeto: ${name}`}</h1>
+          <h1>{`Projeto: ${project.name}`}</h1>
 
           <button
             className={styles.button}
@@ -131,12 +117,12 @@ export default function ProjectDetails() {
             <div className={styles.project_info}>
               <p>
                 <span>Categoria: </span>
-                {category.name}
+                {project.category.name}
               </p>
 
               <p>
                 <span>Total de orçamento: </span>
-                {`R$ ${budget}`}
+                {`R$ ${project.budget}`}
               </p>
 
               <p>
@@ -178,9 +164,20 @@ export default function ProjectDetails() {
         </div>
 
         <h2>Serviços</h2>
-
         <Container customClass="start">
-          <p>Serviços</p>
+          {services.length > 0
+            && services.map((service) => (
+              <ServiceCard
+                key={service.id}
+                name={service.name}
+                cost={service.cost}
+                description={service.description}
+                id={service.id}
+                handleRemove={removeService}
+              />
+            ))}
+
+          {services.length === 0 && <p>Não há serviços cadastrados.</p>}
         </Container>
       </Container>
     </div>

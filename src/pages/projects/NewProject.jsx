@@ -1,31 +1,19 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { postProjects } from '../../helpers/fetchAPI';
 import styles from '../../assets/styles/NewProject.module.css';
-import ProjectForm from './ProjectForm';
 
-// TODO: o botão só deve estar habilitado caso os campos estejam preenchidos
+import ProjectForm from './ProjectForm';
 
 export default function NewProject() {
   const history = useHistory();
 
-  // TODO: corrigir esse erro abaixo
-
-  const createPost = useCallback((project) => {
-    project.cost = 0;
-    project.services = [];
-
-    fetch('http://localhost:5000/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(project),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        history.push('/projects', { message: 'Projeto criado com sucesso!' });
-      })
-      .catch((error) => error.message);
+  const createPost = useCallback(async (project) => {
+    const createdProject = { ...project, cost: 0, services: [] };
+    const postedProject = await postProjects(createdProject);
+    if (postedProject) {
+      history.push('/projects', { message: 'Projeto criado com sucesso!' });
+    }
   }, []);
 
   return (

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { deleteProjectById, getProjects } from '../../helpers/fetchAPI';
 import styles from '../../assets/styles/Projects.module.css';
 
 import Container from '../../components/layout/Container';
@@ -12,9 +13,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [projectMessage, setProjectMessage] = useState('');
-
-  const location = useLocation();
-  const { state } = location;
+  const { state } = useLocation();
 
   let message = '';
 
@@ -23,36 +22,20 @@ export default function Projects() {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      fetch('http://localhost:5000/projects', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setProjects(data);
-          setLoading(false);
-        })
-        .catch((error) => error.message);
+    setTimeout(async () => {
+      const data = await getProjects();
+      setProjects(data);
+      setLoading(false);
     }, 1000);
   }, []);
 
-  const removeProject = useCallback((id) => {
-    fetch(`http://localhost:5000/projects/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then(() => {
-        setProjects(projects.filter((project) => project.id !== id));
-        setProjectMessage('Projeto removido com sucesso');
-      })
-      .catch((error) => error.message);
-  }, []);
+  const removeProject = useCallback(async (id) => {
+    const projectDeleted = await deleteProjectById(id);
+    if (projectDeleted) {
+      setProjects(projects.filter((project) => project.id !== id));
+      setProjectMessage('Projeto removido com sucesso');
+    }
+  }, [projects]);
 
   return (
     <div className={styles.project_container}>
@@ -62,26 +45,24 @@ export default function Projects() {
       </div>
 
       {message && <Message message={message} type="success" />}
+
       {projectMessage && <Message message={projectMessage} type="success" />}
 
       <Container customClass="start">
         {projects.length > 0
-          && projects.map((project) => {
-            const {
-              id, name, budget, category,
-            } = project;
-            return (
-              <ProjectCard
-                key={id}
-                name={name}
-                id={id}
-                budget={budget}
-                category={category.name}
-                handleRemove={removeProject}
-              />
-            );
-          })}
+          && projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              name={project.name}
+              id={project.id}
+              budget={project.budget}
+              category={project.category.name}
+              handleRemove={removeProject}
+            />
+          ))}
+
         {loading && <Loading />}
+
         {!loading && projects.length === 0 && (
           <p>Não há projetos cadastrados!</p>
         )}
