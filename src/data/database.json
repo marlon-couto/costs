@@ -1,24 +1,5 @@
 {
-  "projects": [
-    {
-      "name": "App de Receitas",
-      "budget": "5000",
-      "category": {
-        "id": "2",
-        "name": "Desenvolvimento"
-      },
-      "cost": 2000,
-      "services": [
-        {
-          "name": "Criação de Home Page",
-          "cost": "2000",
-          "description": "Cria home page para a aplicação.",
-          "id": "3779aa5d-5e67-443b-88bc-d2904a34cdd5"
-        }
-      ],
-      "id": 1
-    }
-  ],
+  "projects": [],
   "categories": [
     {
       "id": 1,

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+
 import styles from "../../assets/styles/Select.module.css";
 
 /* Esse componente renderiza um menu dropdown com opções determinadas pela prop recebida.

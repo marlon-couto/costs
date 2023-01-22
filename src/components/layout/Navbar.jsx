@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import logo from '../../assets/img/costs_logo.png';
 import styles from '../../assets/styles/Navbar.module.css';
 
 import Container from './Container';
 
+/* Renderiza uma barra de navegação com links no cabeçalho da página. */
 export default function Navbar() {
   return (
     <nav className={styles.navbar}>

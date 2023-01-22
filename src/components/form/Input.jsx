@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import styles from '../../assets/styles/Input.module.css';
 
 /* Esse componente exibe um input com uma label associada.
