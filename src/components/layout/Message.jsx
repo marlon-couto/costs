@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import styles from '../../assets/styles/Message.module.css';
+import styles from '../../styles/Message.module.css';
 
 /* Exibe uma mensagem do sistema ao criar e editar projetos. */
 export default function Message({ message, type }) {

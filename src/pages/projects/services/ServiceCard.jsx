@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
-import styles from '../../assets/styles/ProjectCard.module.css';
+
+import styles from '../../../styles/ProjectCard.module.css';
 
 export default function ServiceCard({
   id,

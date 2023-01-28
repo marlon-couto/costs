@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../assets/styles/Container.module.css';
+import styles from '../../styles/Container.module.css';
 
 /* Esse componente é um tipo de div personalizada.
 Ele passa estilos para seus componentes filhos. */

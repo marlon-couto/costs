@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
-import { getCategories } from '../../helpers/fetchAPI';
-import styles from '../../assets/styles/ProjectForm.module.css';
 
 import Input from '../../components/form/Input';
 import Select from '../../components/form/Select';
 import SubmitButton from '../../components/form/SubmitButton';
+
+import { getCategories } from '../../helpers/fetchAPI';
+import styles from '../../styles/ProjectForm.module.css';
 
 export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);

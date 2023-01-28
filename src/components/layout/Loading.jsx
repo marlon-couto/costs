@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import styles from "../../assets/styles/Loading.module.css";
-import loading from "../../assets/img/loading.svg";
+import loading from '../../img/loading.svg';
+import styles from '../../styles/Loading.module.css';
 
 /* Exibe um ícone enquanto a página não carrega. */
 export default function Loading() {

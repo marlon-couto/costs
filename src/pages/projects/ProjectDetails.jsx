@@ -1,20 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { v4 as uuid } from 'uuid';
+
 import {
   getProjectById,
   patchProject,
   patchProjectServices,
   putProject,
 } from '../../helpers/fetchAPI';
-import styles from '../../assets/styles/ProjectDetails.module.css';
+
+import styles from '../../styles/ProjectDetails.module.css';
 
 import Container from '../../components/layout/Container';
 import Loading from '../../components/layout/Loading';
 import Message from '../../components/layout/Message';
-import ServiceForm from '../services/ServiceForm';
+import ServiceForm from './services/ServiceForm';
 import ProjectForm from './ProjectForm';
-import ServiceCard from '../services/ServiceCard';
+import ServiceCard from './services/ServiceCard';
 
 export default function ProjectDetails() {
   const { id } = useParams();

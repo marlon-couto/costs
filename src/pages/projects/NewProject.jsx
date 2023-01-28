@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { postProjects } from '../../helpers/fetchAPI';
-import styles from '../../assets/styles/NewProject.module.css';
 
 import ProjectForm from './ProjectForm';
+
+import { postProjects } from '../../helpers/fetchAPI';
+import styles from '../../styles/NewProject.module.css';
 
 export default function NewProject() {
   const history = useHistory();

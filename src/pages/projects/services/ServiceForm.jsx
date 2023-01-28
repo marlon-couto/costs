@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import styles from '../../assets/styles/ProjectForm.module.css';
 
-import Input from '../../components/form/Input';
-import SubmitButton from '../../components/form/SubmitButton';
+import Input from '../../../components/form/Input';
+import SubmitButton from '../../../components/form/SubmitButton';
+
+import styles from '../../../styles/ProjectForm.module.css';
 
 export default function ServiceForm({ handleSubmit, buttonText, projectData }) {
   const [service, setService] = useState({});
