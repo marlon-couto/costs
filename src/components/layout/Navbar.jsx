@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import logo from '../../img/costs_logo.png';
-import styles from '../../styles/Navbar.module.css';
+import styles from './Navbar.module.css';
 
 import Container from './Container';
 

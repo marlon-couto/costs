@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import ProjectForm from './ProjectForm';
 
 import { postProjects } from '../../helpers/fetchAPI';
-import styles from '../../styles/NewProject.module.css';
+import styles from './NewProject.module.css';
 
 export default function NewProject() {
   const history = useHistory();

@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import Container from '../../components/layout/Container';
-import LinkButton from '../../components/layout/LinkButton';
-import Loading from '../../components/layout/Loading';
-import Message from '../../components/layout/Message';
+import LinkButton from '../../components/LinkButton';
+import Loading from '../../components/Loading';
+import Message from '../../components/Message';
 import ProjectCard from './ProjectCard';
 
 import { deleteProjectById, getProjects } from '../../helpers/fetchAPI';
-import styles from '../../styles/Projects.module.css';
+import styles from './Projects.module.css';
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);

@@ -6,7 +6,7 @@ import Select from '../../components/form/Select';
 import SubmitButton from '../../components/form/SubmitButton';
 
 import { getCategories } from '../../helpers/fetchAPI';
-import styles from '../../styles/ProjectForm.module.css';
+import styles from './ProjectForm.module.css';
 
 export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);

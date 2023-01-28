@@ -1,8 +1,8 @@
 import React from 'react';
-import LinkButton from '../components/layout/LinkButton';
+import LinkButton from '../components/LinkButton';
 
 import savings from '../img/savings.svg';
-import styles from '../styles/Home.module.css';
+import styles from './Home.module.css';
 
 export default function Home() {
   return (

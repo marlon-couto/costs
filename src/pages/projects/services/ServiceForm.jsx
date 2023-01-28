@@ -4,7 +4,7 @@ import React, { useCallback, useState } from 'react';
 import Input from '../../../components/form/Input';
 import SubmitButton from '../../../components/form/SubmitButton';
 
-import styles from '../../../styles/ProjectForm.module.css';
+import styles from '../ProjectForm.module.css';
 
 export default function ServiceForm({ handleSubmit, buttonText, projectData }) {
   const [service, setService] = useState({});

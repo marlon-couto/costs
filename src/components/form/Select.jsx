@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from '../../styles/Select.module.css';
+import styles from './Select.module.css';
 
 /* Esse componente renderiza um menu dropdown com opções determinadas pela prop recebida.
 As props determinam também o texto da label, o identificador da tag e o valor selecionado.

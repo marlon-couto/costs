@@ -10,11 +10,11 @@ import {
   putProject,
 } from '../../helpers/fetchAPI';
 
-import styles from '../../styles/ProjectDetails.module.css';
+import styles from './ProjectDetails.module.css';
 
 import Container from '../../components/layout/Container';
-import Loading from '../../components/layout/Loading';
-import Message from '../../components/layout/Message';
+import Loading from '../../components/Loading';
+import Message from '../../components/Message';
 import ServiceForm from './services/ServiceForm';
 import ProjectForm from './ProjectForm';
 import ServiceCard from './services/ServiceCard';
