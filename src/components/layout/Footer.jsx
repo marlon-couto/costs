@@ -3,7 +3,7 @@ import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 import styles from './Footer.module.css';
 
-/* Renderiza ícones de redes sociais no rodapé da página. */
+// Renderiza ícones de redes sociais no rodapé da página
 export default function Footer() {
   return (
     <footer className={styles.footer}>
@@ -11,11 +11,9 @@ export default function Footer() {
         <li>
           <FaFacebook />
         </li>
-
         <li>
           <FaInstagram />
         </li>
-
         <li>
           <FaLinkedin />
         </li>

@@ -12,11 +12,8 @@ export default function Home() {
         {' '}
         <span>Costs</span>
       </h1>
-
       <p>Comece a gerenciar seus projetos agora mesmo!</p>
-
       <LinkButton to="/new-project" text="Novo Projeto" />
-
       <img src={savings} alt="Costs" />
     </section>
   );

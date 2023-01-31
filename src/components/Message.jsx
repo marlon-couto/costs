@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './Message.module.css';
 
-/* Exibe uma mensagem do sistema ao criar e editar projetos. */
+// Exibe uma mensagem do sistema ao criar e editar projetos
 export default function Message({ message, type }) {
   const [visible, setVisible] = useState(false);
 

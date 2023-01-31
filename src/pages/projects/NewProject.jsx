@@ -12,6 +12,7 @@ export default function NewProject() {
   const createPost = useCallback(async (project) => {
     const createdProject = { ...project, cost: 0, services: [] };
     const postedProject = await postProjects(createdProject);
+
     if (postedProject) {
       history.push('/projects', { message: 'Projeto criado com sucesso!' });
     }
@@ -21,7 +22,6 @@ export default function NewProject() {
     <div className={styles.new_project_container}>
       <h1>Criar Projeto</h1>
       <p>Crie seu projeto para depois adicionar os serviços</p>
-
       <ProjectForm handleSubmit={createPost} buttonText="Criar projeto" />
     </div>
   );

@@ -16,10 +16,8 @@ export default function Select({
   return (
     <div className={styles.form_control}>
       <label htmlFor={name}>{text}</label>
-
       <select name={name} id={name} onChange={handleChange} value={value || ''}>
         <option value="">Selecione uma opção</option>
-
         {categories.map((category) => (
           <option value={category.id} key={category.id}>
             {category.name}

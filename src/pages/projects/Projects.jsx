@@ -14,6 +14,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [projectMessage, setProjectMessage] = useState('');
+
   const { state } = useLocation();
 
   let message = '';
@@ -25,18 +26,23 @@ export default function Projects() {
   useEffect(() => {
     setTimeout(async () => {
       const data = await getProjects();
+
       setProjects(data);
       setLoading(false);
     }, 1000);
   }, []);
 
-  const removeProject = useCallback(async (id) => {
-    const projectDeleted = await deleteProjectById(id);
-    if (projectDeleted) {
-      setProjects(projects.filter((project) => project.id !== id));
-      setProjectMessage('Projeto removido com sucesso');
-    }
-  }, [projects]);
+  const removeProject = useCallback(
+    async (id) => {
+      const projectDeleted = await deleteProjectById(id);
+
+      if (projectDeleted) {
+        setProjects(projects.filter((project) => project.id !== id));
+        setProjectMessage('Projeto removido com sucesso');
+      }
+    },
+    [projects],
+  );
 
   return (
     <div className={styles.project_container}>
@@ -46,7 +52,6 @@ export default function Projects() {
       </div>
 
       {message && <Message message={message} type="success" />}
-
       {projectMessage && <Message message={projectMessage} type="success" />}
 
       <Container customClass="start">
@@ -63,7 +68,6 @@ export default function Projects() {
           ))}
 
         {loading && <Loading />}
-
         {!loading && projects.length === 0 && (
           <p>Não há projetos cadastrados!</p>
         )}

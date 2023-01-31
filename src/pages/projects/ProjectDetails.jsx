@@ -21,6 +21,7 @@ import ServiceCard from './services/ServiceCard';
 
 export default function ProjectDetails() {
   const { id } = useParams();
+
   const [project, setProject] = useState([]);
   const [services, setServices] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
@@ -30,6 +31,7 @@ export default function ProjectDetails() {
 
   const handleProject = async (projectId) => {
     const data = await getProjectById(projectId);
+
     setProject(data);
     setServices(data.services);
   };
@@ -50,16 +52,20 @@ export default function ProjectDetails() {
 
   const editPost = useCallback(async (updatedProject) => {
     setMessage('');
+
     if (updatedProject.budget < updatedProject.cost) {
       setMessage('O custo do projeto não pode ser maior que o orçamento!');
       setMessageType('error');
       return false;
     }
+
     const data = await patchProject(id, updatedProject);
+
     setProject(data);
     setShowProjectForm(false);
     setMessage('Projeto atualizado!');
     setMessageType('success');
+
     return true;
   }, []);
 
@@ -69,8 +75,10 @@ export default function ProjectDetails() {
     const lastService = project.services[project.services.length - 1];
     const newCost = parseFloat(project.cost) + parseFloat(lastService.cost);
     const projectBudget = parseFloat(project.budget);
+
     lastService.id = uuid();
     setMessage('');
+
     if (newCost > projectBudget) {
       setMessage(
         'Orçamento ultrapassado, por favor verifique o valor do serviço.',
@@ -79,17 +87,25 @@ export default function ProjectDetails() {
       project.services.pop();
       return;
     }
+
     project.cost = newCost;
     await putProject(id, project);
+
     setShowServiceForm(false);
   }, [project]);
 
   const removeService = useCallback(async (serviceId, cost) => {
-    const servicesUpdated = project.services.filter((service) => service.id !== serviceId);
+    const servicesUpdated = project.services.filter(
+      (service) => service.id !== serviceId,
+    );
+
     const projectUpdated = project;
+
     projectUpdated.services = servicesUpdated;
     projectUpdated.cost = parseFloat(projectUpdated.cost) - parseFloat(cost);
+
     const servicesPatched = await patchProjectServices(projectUpdated);
+
     if (servicesPatched) {
       setProject(projectUpdated);
       setServices(servicesUpdated);
@@ -107,7 +123,6 @@ export default function ProjectDetails() {
 
         <div className={styles.details_container}>
           <h1>{`Projeto: ${project.name}`}</h1>
-
           <button
             className={styles.button}
             onClick={toggleProjectForm}
@@ -146,7 +161,6 @@ export default function ProjectDetails() {
 
         <div className={styles.service_form_container}>
           <h2>Adicione um serviço:</h2>
-
           <button
             className={styles.button}
             onClick={toggleServiceForm}

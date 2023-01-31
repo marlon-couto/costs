@@ -20,7 +20,6 @@ export default function ProjectCard({
   return (
     <div className={styles.project_card}>
       <h4>{name}</h4>
-
       <p>
         <span>Orçamento:</span>
         {' '}
@@ -37,7 +36,6 @@ export default function ProjectCard({
           <BsPencil />
           Editar
         </Link>
-
         <button type="button" onClick={remove}>
           <BsFillTrashFill />
           Excluir

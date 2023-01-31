@@ -15,9 +15,12 @@ export default function ServiceForm({ handleSubmit, buttonText, projectData }) {
     handleSubmit(projectData);
   };
 
-  const handleChange = useCallback(({ target: { name, value } }) => {
-    setService({ ...service, [name]: value });
-  }, [service]);
+  const handleChange = useCallback(
+    ({ target: { name, value } }) => {
+      setService({ ...service, [name]: value });
+    },
+    [service],
+  );
 
   return (
     <form className={styles.form} onSubmit={submit}>
@@ -54,11 +57,13 @@ ServiceForm.propTypes = {
   buttonText: PropTypes.string,
   handleSubmit: PropTypes.func,
   projectData: PropTypes.shape({
-    services: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string,
-      id: PropTypes.string,
-      cost: PropTypes.string,
-      description: PropTypes.string,
-    })),
+    services: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        id: PropTypes.string,
+        cost: PropTypes.string,
+        description: PropTypes.string,
+      }),
+    ),
   }),
 }.isRequired;

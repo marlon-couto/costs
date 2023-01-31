@@ -18,41 +18,12 @@ export default function App() {
 
       <Container customClass="min_height">
         <Switch>
-          <Route
-            exact
-            path="/project/:id"
-            component={ProjectDetails}
-          />
-
-          <Route
-            exact
-            path="/company"
-            component={Company}
-          />
-
-          <Route
-            exact
-            path="/contact"
-            component={Contact}
-          />
-
-          <Route
-            exact
-            path="/new-project"
-            component={NewProject}
-          />
-
-          <Route
-            exact
-            path="/projects"
-            component={Projects}
-          />
-
-          <Route
-            exact
-            path="/"
-            component={Home}
-          />
+          <Route exact path="/project/:id" component={ProjectDetails} />
+          <Route exact path="/company" component={Company} />
+          <Route exact path="/contact" component={Contact} />
+          <Route exact path="/new-project" component={NewProject} />
+          <Route exact path="/projects" component={Projects} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </Container>
 

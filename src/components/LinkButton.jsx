@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './LinkButton.module.css';
 
-/* Renderiza um botão que direciona o usuário para outra rota na aplicação. */
+// Renderiza um botão que direciona o usuário para outra rota na aplicação
 export default function LinkButton({ to, text }) {
   return (
     <Link to={to} className={styles.button}>

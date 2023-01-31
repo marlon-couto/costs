@@ -3,7 +3,7 @@ import React from 'react';
 
 import styles from './SubmitButton.module.css';
 
-/* Esse componente renderiza um botão de submissão com um texto recebido como props. */
+// Esse componente renderiza um botão de submissão com um texto recebido como props
 export default function SubmitButton({ text, disabled }) {
   return (
     <div className={styles.button_container}>
