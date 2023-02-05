@@ -1,6 +1,6 @@
 /* Esse arquivo contém funções auxiliares para fazer requisições à API,
 alterar, adicionar e remover projetos e serviços. */
-const URL = 'http://localhost:5000';
+const URL = 'https://fake-api-five-iota.vercel.app';
 
 export async function postProjects(project) {
   try {
@@ -22,7 +22,7 @@ export async function postProjects(project) {
 
 export async function getCategories() {
   try {
-    const response = await fetch(`${URL}/categories`, {
+    const response = await fetch(`${URL}/project-categories`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

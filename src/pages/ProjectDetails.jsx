@@ -30,17 +30,15 @@ export default function ProjectDetails() {
   const [messageType, setMessageType] = useState();
 
   // Define os dados do projeto e dos serviços
-  const handleProject = async (projectId) => {
-    const data = await getProjectById(projectId);
-
-    setProject(data);
-    setServices(data.services);
-  };
-
   useEffect(() => {
-    setTimeout(async () => {
-      await handleProject(id);
-    }, 1000);
+    const handleProject = async (projectId) => {
+      const data = await getProjectById(projectId);
+
+      setProject(data);
+      setServices(data.services);
+    };
+
+    handleProject(id);
   }, [id]);
 
   // Define se o formulário de projeto será exibido ou não

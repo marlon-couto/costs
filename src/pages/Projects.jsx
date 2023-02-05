@@ -27,12 +27,14 @@ export default function Projects() {
 
   // Busca os projetos no banco de dados
   useEffect(() => {
-    setTimeout(async () => {
+    const handleProjects = async () => {
       const data = await getProjects();
 
       setProjects(data);
       setLoading(false);
-    }, 1000);
+    };
+
+    handleProjects();
   }, []);
 
   // Remove um projeto do banco de dados
