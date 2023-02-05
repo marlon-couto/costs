@@ -4,6 +4,7 @@ import LinkButton from '../components/LinkButton';
 import savings from '../img/savings.svg';
 import styles from './Home.module.css';
 
+// Contém o texto de boas-vindas e o botão para criar um novo projeto
 export default function Home() {
   return (
     <section className={styles.home_container}>

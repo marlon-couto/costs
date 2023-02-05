@@ -1,20 +1,21 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
+import Input from '../../components/form/Input';
+import SubmitButton from '../../components/form/SubmitButton';
+import styles from '../projects/ProjectForm.module.css';
 
-import Input from '../../../components/form/Input';
-import SubmitButton from '../../../components/form/SubmitButton';
-
-import styles from '../ProjectForm.module.css';
-
+// Esse componente renderiza um formulário para adicionar um serviço ao projeto
 export default function ServiceForm({ handleSubmit, buttonText, projectData }) {
   const [service, setService] = useState({});
 
+  // Envia os dados do serviço para o componente pai
   const submit = (event) => {
     event.preventDefault();
     projectData.services.push(service);
     handleSubmit(projectData);
   };
 
+  // Atualiza o estado do serviço
   const handleChange = useCallback(
     ({ target: { name, value } }) => {
       setService({ ...service, [name]: value });

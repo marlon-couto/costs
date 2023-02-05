@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsPencil, BsFillTrashFill } from 'react-icons/bs';
-
 import styles from './ProjectCard.module.css';
 
+// Renderiza um card com os dados do projeto
 export default function ProjectCard({
   id,
   name,
@@ -12,6 +12,7 @@ export default function ProjectCard({
   category,
   handleRemove,
 }) {
+  // Remove o projeto
   const remove = (event) => {
     event.preventDefault();
     handleRemove(id);

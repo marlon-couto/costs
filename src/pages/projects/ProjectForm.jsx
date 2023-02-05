@@ -8,12 +8,14 @@ import SubmitButton from '../../components/form/SubmitButton';
 import { getCategories } from '../../helpers/fetchAPI';
 import styles from './ProjectForm.module.css';
 
+/* Renderiza um formulário para edição de um projeto */
 export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
 
   // TODO: incluir validação de formulário.
 
+  // Salva no estado local as categorias de projeto
   const handleCategories = async () => {
     const data = await getCategories();
     setCategories(data);
@@ -23,11 +25,13 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
     handleCategories();
   }, []);
 
+  // Função que envia os dados do formulário para o componente pai
   const submit = (event) => {
     event.preventDefault();
     handleSubmit(project);
   };
 
+  // Função que atualiza o estado local com os dados do formulário
   const handleChange = useCallback(
     ({ target: { name, value } }) => {
       setProject({ ...project, [name]: value });
@@ -35,6 +39,7 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
     [project],
   );
 
+  // Função que atualiza o estado local com os dados do formulário
   const handleSelect = useCallback(
     ({ target: { value, options, selectedIndex } }) => {
       setProject({
@@ -66,7 +71,7 @@ export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
       />
 
       <Select
-        name="category_id"
+        name="category-id"
         text="Selecione a categoria"
         categories={categories}
         handleChange={handleSelect}

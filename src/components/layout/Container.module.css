@@ -6,6 +6,7 @@
   flex-wrap: wrap;
 }
 
+/* Essas propriedades são opcionais */
 .min_height {
   min-height: 75%;
 }

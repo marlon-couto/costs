@@ -1,11 +1,13 @@
-const URL = "http://localhost:5000";
+/* Esse arquivo contém funções auxiliares para fazer requisições à API,
+alterar, adicionar e remover projetos e serviços. */
+const URL = 'http://localhost:5000';
 
 export async function postProjects(project) {
   try {
     const response = await fetch(`${URL}/projects`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(project),
     });
@@ -21,9 +23,9 @@ export async function postProjects(project) {
 export async function getCategories() {
   try {
     const response = await fetch(`${URL}/categories`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -38,9 +40,9 @@ export async function getCategories() {
 export async function getProjectById(id) {
   try {
     const response = await fetch(`${URL}/projects/${id}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -55,9 +57,9 @@ export async function getProjectById(id) {
 export async function patchProject(id, updatedProject) {
   try {
     const response = await fetch(`${URL}/projects/${id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(updatedProject),
     });
@@ -73,9 +75,9 @@ export async function patchProject(id, updatedProject) {
 export async function putProject(id, project) {
   try {
     const response = await fetch(`${URL}/projects/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(project),
     });
@@ -91,9 +93,9 @@ export async function putProject(id, project) {
 export async function getProjects() {
   try {
     const response = await fetch(`${URL}/projects`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -108,9 +110,9 @@ export async function getProjects() {
 export async function deleteProjectById(id) {
   try {
     const response = await fetch(`${URL}/projects/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -125,9 +127,9 @@ export async function deleteProjectById(id) {
 export async function patchProjectServices(projectUpdated) {
   try {
     const response = await fetch(`${URL}/projects/${projectUpdated.id}`, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(projectUpdated),
     });

@@ -3,8 +3,8 @@ import React from 'react';
 
 import styles from './Container.module.css';
 
-/* Esse componente é um tipo de div personalizada.
-Ele passa estilos para seus componentes filhos. */
+/* Esse componente é uma div personalizada.
+Ele passa estilos de maneira dinâmica para seus componentes filhos. */
 export default function Container({ customClass, children }) {
   return (
     <div className={`${styles.container} ${styles[customClass]}`}>

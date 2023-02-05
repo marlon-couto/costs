@@ -15,6 +15,7 @@
   border: none;
 }
 
+/* Muda a cor do texto no atributo placeholder */
 .form_control input::placeholder {
   color: var(--tertiary-txt-clr);
 }

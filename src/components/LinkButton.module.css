@@ -6,6 +6,7 @@
   transition: 0.5s;
 }
 
+/* Muda a cor do botão quando o mouse passar sobre ele */
 .button:hover {
   color: var(--accent-clr);
 }

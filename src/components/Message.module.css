@@ -8,6 +8,7 @@
   border-radius: 5px;
 }
 
+/* As cores das mensagens indicam se houve sucesso ou falha */
 .success {
   color: #155724;
   background-color: #d4edda;

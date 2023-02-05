@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
+import styles from '../projects/ProjectCard.module.css';
 
-import styles from '../ProjectCard.module.css';
-
+// Esse componente renderiza um card com as informações de um serviço
 export default function ServiceCard({
   id,
   name,
@@ -11,6 +11,7 @@ export default function ServiceCard({
   description,
   handleRemove,
 }) {
+  // Função que remove um serviço
   const remove = (event) => {
     event.preventDefault();
     handleRemove(id, cost);

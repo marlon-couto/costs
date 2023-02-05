@@ -8,20 +8,20 @@ import {
   patchProject,
   patchProjectServices,
   putProject,
-} from '../../helpers/fetchAPI';
+} from '../helpers/fetchAPI';
 
 import styles from './ProjectDetails.module.css';
 
-import Container from '../../components/layout/Container';
-import Loading from '../../components/Loading';
-import Message from '../../components/Message';
+import Container from '../components/layout/Container';
+import Loading from '../components/Loading';
+import Message from '../components/Message';
 import ServiceForm from './services/ServiceForm';
-import ProjectForm from './ProjectForm';
+import ProjectForm from './projects/ProjectForm';
 import ServiceCard from './services/ServiceCard';
 
+// Renderiza os detalhes do projeto
 export default function ProjectDetails() {
   const { id } = useParams();
-
   const [project, setProject] = useState([]);
   const [services, setServices] = useState([]);
   const [showProjectForm, setShowProjectForm] = useState(false);
@@ -29,6 +29,7 @@ export default function ProjectDetails() {
   const [message, setMessage] = useState();
   const [messageType, setMessageType] = useState();
 
+  // Define os dados do projeto e dos serviços
   const handleProject = async (projectId) => {
     const data = await getProjectById(projectId);
 
@@ -42,14 +43,17 @@ export default function ProjectDetails() {
     }, 1000);
   }, [id]);
 
+  // Define se o formulário de projeto será exibido ou não
   const toggleProjectForm = () => {
     setShowProjectForm(!showProjectForm);
   };
 
+  // Define se o formulário de serviço será exibido ou não
   const toggleServiceForm = () => {
     setShowServiceForm(!showServiceForm);
   };
 
+  // Define a edição do projeto
   const editPost = useCallback(async (updatedProject) => {
     setMessage('');
 
@@ -69,8 +73,10 @@ export default function ProjectDetails() {
     return true;
   }, []);
 
+  // Atualiza os custos do projeto
   const showTotalCost = useCallback(() => project.cost, [project.cost]);
 
+  // Cria um novo serviço
   const createService = useCallback(async () => {
     const lastService = project.services[project.services.length - 1];
     const newCost = parseFloat(project.cost) + parseFloat(lastService.cost);
@@ -94,6 +100,7 @@ export default function ProjectDetails() {
     setShowServiceForm(false);
   }, [project]);
 
+  // Remove um serviço
   const removeService = useCallback(async (serviceId, cost) => {
     const servicesUpdated = project.services.filter(
       (service) => service.id !== serviceId,
@@ -131,6 +138,7 @@ export default function ProjectDetails() {
             {!showProjectForm ? 'Editar projeto' : 'Fechar'}
           </button>
 
+          {/* Exibe os dados do projeto ou habilita a edição dos mesmos */}
           {!showProjectForm ? (
             <div className={styles.project_info}>
               <p>
@@ -159,6 +167,7 @@ export default function ProjectDetails() {
           )}
         </div>
 
+        {/* Exibe o formulário de serviço ou habilita a criação de um novo serviço */}
         <div className={styles.service_form_container}>
           <h2>Adicione um serviço:</h2>
           <button
@@ -180,6 +189,7 @@ export default function ProjectDetails() {
           </div>
         </div>
 
+        {/* Exibe os serviços do projeto */}
         <h2>Serviços</h2>
         <Container customClass="start">
           {services.length > 0
