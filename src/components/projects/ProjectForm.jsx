@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useEffect, useState } from 'react';
 
-import Input from '../../components/form/Input';
-import Select from '../../components/form/Select';
-import SubmitButton from '../../components/form/SubmitButton';
+import Input from '../form/Input';
+import Select from '../form/Select';
+import SubmitButton from '../form/SubmitButton';
 
 import { getCategories } from '../../helpers/fetchAPI';
 import styles from './ProjectForm.module.css';

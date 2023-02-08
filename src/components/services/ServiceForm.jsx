@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useCallback, useState } from 'react';
-import Input from '../../components/form/Input';
-import SubmitButton from '../../components/form/SubmitButton';
+import Input from '../form/Input';
+import SubmitButton from '../form/SubmitButton';
 import styles from '../projects/ProjectForm.module.css';
 
 // Esse componente renderiza um formulário para adicionar um serviço ao projeto

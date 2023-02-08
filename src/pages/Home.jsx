@@ -7,7 +7,7 @@ import styles from './Home.module.css';
 // Contém o texto de boas-vindas e o botão para criar um novo projeto
 export default function Home() {
   return (
-    <section className={styles.home_container}>
+    <main className={styles.home_container}>
       <h1>
         Bem-vindo ao
         {' '}
@@ -16,6 +16,6 @@ export default function Home() {
       <p>Comece a gerenciar seus projetos agora mesmo!</p>
       <LinkButton to="/new-project" text="Novo Projeto" />
       <img src={savings} alt="Costs" />
-    </section>
+    </main>
   );
 }

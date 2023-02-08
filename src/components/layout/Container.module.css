@@ -11,6 +11,11 @@
   min-height: 75%;
 }
 
+.min_height main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .start {
   justify-content: flex-start;
 }

@@ -5,7 +5,7 @@ import Container from '../components/layout/Container';
 import LinkButton from '../components/LinkButton';
 import Loading from '../components/Loading';
 import Message from '../components/Message';
-import ProjectCard from './projects/ProjectCard';
+import ProjectCard from '../components/projects/ProjectCard';
 
 import { deleteProjectById, getProjects } from '../helpers/fetchAPI';
 import styles from './Projects.module.css';
@@ -51,7 +51,7 @@ export default function Projects() {
   );
 
   return (
-    <div className={styles.project_container}>
+    <main className={styles.project_container}>
       <div className={styles.title_container}>
         <h1>Meus Projetos</h1>
         <LinkButton to="/new-project" text="Novo Projeto" />
@@ -83,6 +83,6 @@ export default function Projects() {
           <p>Não há projetos cadastrados!</p>
         )}
       </Container>
-    </div>
+    </main>
   );
 }

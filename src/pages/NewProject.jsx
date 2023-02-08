@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import ProjectForm from './projects/ProjectForm';
+import ProjectForm from '../components/projects/ProjectForm';
 import { postProjects } from '../helpers/fetchAPI';
 import styles from './NewProject.module.css';
 
@@ -18,10 +18,10 @@ export default function NewProject() {
   }, []);
 
   return (
-    <div className={styles.new_project_container}>
+    <main className={styles.new_project_container}>
       <h1>Criar Projeto</h1>
       <p>Crie seu projeto para depois adicionar os serviços</p>
       <ProjectForm handleSubmit={createPost} buttonText="Criar projeto" />
-    </div>
+    </main>
   );
 }

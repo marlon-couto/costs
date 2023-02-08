@@ -1,7 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { v4 as uuid } from 'uuid';
+
+import Container from '../components/layout/Container';
+import Loading from '../components/Loading';
+import Message from '../components/Message';
+import ServiceForm from '../components/services/ServiceForm';
+import ProjectForm from '../components/projects/ProjectForm';
+import ServiceCard from '../components/services/ServiceCard';
 
 import {
   getProjectById,
@@ -11,13 +17,6 @@ import {
 } from '../helpers/fetchAPI';
 
 import styles from './ProjectDetails.module.css';
-
-import Container from '../components/layout/Container';
-import Loading from '../components/Loading';
-import Message from '../components/Message';
-import ServiceForm from './services/ServiceForm';
-import ProjectForm from './projects/ProjectForm';
-import ServiceCard from './services/ServiceCard';
 
 // Renderiza os detalhes do projeto
 export default function ProjectDetails() {
@@ -122,7 +121,7 @@ export default function ProjectDetails() {
   if (!project.name) return <Loading />;
 
   return (
-    <div className={styles.project_details}>
+    <main className={styles.project_details}>
       <Container customClass="column">
         {message && <Message type={messageType} message={message} />}
 
@@ -205,6 +204,6 @@ export default function ProjectDetails() {
           {services.length === 0 && <p>Não há serviços cadastrados.</p>}
         </Container>
       </Container>
-    </div>
+    </main>
   );
 }
