@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
 }
-
+/* FIXME: corrigir tamanho do botão em telas menores */
 .project_card_actions a,
 .project_card_actions button {
   text-decoration: none;

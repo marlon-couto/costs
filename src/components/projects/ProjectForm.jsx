@@ -12,9 +12,7 @@ import styles from './ProjectForm.module.css';
 export default function ProjectForm({ handleSubmit, projectData, buttonText }) {
   const [categories, setCategories] = useState([]);
   const [project, setProject] = useState(projectData || {});
-
   // TODO: incluir validação de formulário.
-
   // Salva no estado local as categorias de projeto
   const handleCategories = async () => {
     const data = await getCategories();
