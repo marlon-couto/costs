@@ -1,8 +1,12 @@
 const gulp = require('gulp');
+const watch = require('gulp-watch');
 const prettier = require('@bdchauvette/gulp-prettier');
 
-gulp.task('prettify', () => gulp
-  .src('src/**/*.js')
+const PATTERN = 'src/**/*.{js,jx,css,html,css,json,md}';
+
+gulp.task('default', () => gulp
+  .src(PATTERN)
+  .pipe(watch(PATTERN))
   .pipe(
     prettier({
       // Normal prettier options, e.g.:
