@@ -81,8 +81,7 @@
 }
 
 .project_card_actions a:hover,
-.project_card_actions button:hover
-{
+.project_card_actions button:hover {
   background-color: var(--secondary-bg-clr);
   color: var(--accent-clr);
 }

@@ -2,9 +2,9 @@ const gulp = require('gulp');
 const watch = require('gulp-watch');
 const prettier = require('@bdchauvette/gulp-prettier');
 
-const PATTERN = 'src/**/*.{js,jx,css,html,css,json,md}';
+const PATTERN = 'src/**/*.{js,jx,html,css,json,md}';
 
-gulp.task('default', () => gulp
+gulp.task('prettify', () => gulp
   .src(PATTERN)
   .pipe(watch(PATTERN))
   .pipe(
@@ -15,3 +15,5 @@ gulp.task('default', () => gulp
     }),
   )
   .pipe(gulp.dest((file) => file.base)));
+
+gulp.task('default', gulp.series('prettify'));
